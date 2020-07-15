@@ -36,16 +36,16 @@ public class LocalUserDataSourceTest {
     private LocalUserDataSource mDataSource;
 
     @Before
-    public void initDb() throws Exception {
+    public void initDb() {
         // using an in-memory database because the information stored here disappears when the
         // process is killed
-        mDatabase = Room.inMemoryDatabaseBuilder(ApplicationProvider.getApplicationContext()(),
+        mDatabase = Room.inMemoryDatabaseBuilder(ApplicationProvider.getApplicationContext(),
                 UsersDatabase.class).build();
         mDataSource = new LocalUserDataSource(mDatabase.userDao());
     }
 
     @After
-    public void closeDb() throws Exception {
+    public void closeDb() {
         mDatabase.close();
     }
 
